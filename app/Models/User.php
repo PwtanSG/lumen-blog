@@ -30,4 +30,8 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     protected $hidden = [
         'password',
     ];
+
+    // public function getPostRelation(){
+    //     return $this->hasMany(Post::Class);
+    // }
 }
