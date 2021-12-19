@@ -9,7 +9,8 @@ class PostController extends Controller
 {
     public function index(){
         try{
-            $posts = Post::all();
+            $posts = Post::with('getUser')->get();
+            //$posts = Post::all();
             return $posts;
         }catch(\Exception $e){
             return response()->json(['status'=> 'Error', 'message'=>$e->getMessage()]);

@@ -42,7 +42,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         return [];
     }
     
-    // public function getPostRelation(){
-    //     return $this->hasMany(Post::Class);
-    // }
+    public function getPosts(){
+         return $this->hasMany(Post::Class);
+    }
 }
