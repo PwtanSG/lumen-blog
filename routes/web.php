@@ -12,12 +12,24 @@
 | and give it the Closure to call when that URI is requested.
 |
 */
+
+
+
 $router->group(['prefix' => 'api'], function () use ($router){
-    $router->get('/posts','PostController@index');
-    $router->get('/posts/{id}', 'PostController@show');
-    $router->post('/posts', 'PostController@store');
-    $router->put('/posts/{id}', 'PostController@update');
-    $router->delete('/posts/{id}', 'PostController@destroy');
+    $router->post('/login','AuthController@login');
+    $router->post('/register','AuthController@register');
+
+
+    $router->group(['middleware' => 'auth'], function () use ($router){
+        $router->post('/logout','AuthController@logout');
+        $router->get('/posts','PostController@index');
+        $router->get('/posts/{id}', 'PostController@show');
+        $router->post('/posts', 'PostController@store');
+        $router->put('/posts/{id}', 'PostController@update');
+        $router->delete('/posts/{id}', 'PostController@destroy');
+    });
+
+    
 });
 
 $router->get('/', function () use ($router) {
